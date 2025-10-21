@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ES-es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Aiym Panel :: AIYM YUC</title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+    <link rel="icon" type="image/png" href="../assets/favicon-32x32.png">
+
+    <link rel="stylesheet" href="../assets/css">
+    <link href="../assets/fonts.min.css" rel="stylesheet">
+    <link href="../assets/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/atlantis2.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/demo.css">
+    <link rel="stylesheet" href="../assets/alertif.min.css">
+    <link rel="stylesheet" href="../assets/shared-modern.css">
+    <link rel="stylesheet" href="Atletas INICIO.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        :root {
+            --primary: #28a9e2;
+            --dark: #0e4165;
+            --light: #add6e8;
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+            --shadow-sm: 0 2px 8px rgba(14, 65, 101, 0.06);
+            --shadow-md: 0 4px 20px rgba(14, 65, 101, 0.08);
+            --shadow-lg: 0 12px 40px rgba(14, 65, 101, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(40, 169, 226, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(14, 65, 101, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-header {
+            background: linear-gradient(135deg, #0a2540 0%, var(--dark) 50%, var(--primary) 100%) !important;
+            box-shadow: 0 8px 32px rgba(14, 65, 101, 0.25);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-brand {
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-link img {
+            transition: var(--transition);
+        }
+
+        .nav-link:hover img {
+            transform: scale(1.1);
+        }
+
+        .dropdown-menu {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(40, 169, 226, 0.1);
+        }
+
+        .quick-actions-item {
+            transition: var(--transition);
+            border-radius: 12px;
+        }
+
+        .quick-actions-item:hover {
+            background: linear-gradient(135deg, rgba(40, 169, 226, 0.1) 0%, rgba(14, 65, 101, 0.05) 100%);
+            transform: translateY(-2px);
+        }
+
+        .page-title {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .breadcrumbs {
+            color: #64748b;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(40, 169, 226, 0.1);
+            transition: var(--transition);
+        }
+
+        /* No necesita hover general si la tabla está dentro */
+        /* .card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(40, 169, 226, 0.3);
+        } */
+
+        .avatar-img {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+        }
+
+        .avatar-img:hover {
+            border-color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* === ESTILOS MEJORADOS PARA LA TABLA Y BOTONES === */
+        .table {
+            border-collapse: separate; /* Necesario para border-radius en thead */
+            border-spacing: 0;
+            margin-bottom: 0; /* Remover margen si está dentro de card */
+        }
+        .table thead th {
+             background-color: #f8f9fa; /* Fondo gris claro */
+             color: var(--dark);       /* Texto oscuro */
+             border-bottom: 2px solid var(--light); /* Borde inferior azul claro */
+             border-top: none;
+             padding: 0.9rem 0.75rem; /* Padding vertical y horizontal */
+             font-weight: 600;      /* Texto semi-bold */
+             text-transform: uppercase; /* Opcional: mayúsculas */
+             font-size: 0.8rem;         /* Opcional: tamaño de fuente */
+             letter-spacing: 0.5px;   /* Opcional: espaciado */
+             text-align: left;        /* Alinear texto a la izquierda por defecto */
+        }
+        .table thead th:first-child {
+            border-top-left-radius: 8px; /* Redondear esquina superior izquierda */
+        }
+        .table thead th:last-child {
+            border-top-right-radius: 8px; /* Redondear esquina superior derecha */
+            text-align: center; /* Centrar texto de Acciones */
+        }
+        .table td {
+             vertical-align: middle; /* Centrar verticalmente contenido de celdas */
+             padding: 0.75rem; /* Padding estándar */
+        }
+        .table tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 8px; /* Redondear esquina inferior izquierda */
+        }
+        .table tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 8px; /* Redondear esquina inferior derecha */
+        }
+
+        /* Contenedor de botones para centrar */
+        .table td.actions-cell {
+            display: flex;
+            justify-content: center; /* Centrar botones horizontalmente */
+            align-items: center;    /* Centrar botones verticalmente */
+            padding: 0.5rem; /* Ajustar padding si es necesario */
+        }
+
+        /* Estilo general para botones de acción */
+        .btn-action {
+            padding: 0.3rem 0.7rem;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            margin: 0 4px; /* Margen horizontal entre botones */
+            transition: all 0.2s ease-in-out;
+            line-height: 1.5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none; /* Quitar borde por defecto */
+            color: white !important; /* Asegurar texto blanco */
+        }
+
+        .btn-action:hover {
+            transform: scale(1.05);
+            filter: brightness(110%);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra más notoria en hover */
+        }
+
+        /* Specific Button Colors */
+        .btn-action-dashboard { background-color: var(--primary); }
+        .btn-action-edit { background-color: #20c997; } /* Teal */
+        .btn-action-delete { background-color: #dc3545; } /* Red */
+        .btn-action-lactato { background-color: #17a2b8; } /* Info Blue */
+        .btn-action-ergo { background-color: #28a745; } /* Success Green */
+        /* Fin de estilos mejorados */
+
+        .athlete-sport-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-top: 5px; }
+        .athlete-sport-Carrera { background-color: #e3f2fd; color: #1976d2; }
+        .athlete-sport-Bici { background-color: #f3e5f5; color: #7b1fa2; }
+        .athlete-sport-Natación { background-color: #e0f2f1; color: #00796b; }
+        .athlete-sport-Triatlón { background-color: #fff3e0; color: #e65100; }
+        .athlete-sport-Otro { background-color: #f5f5f5; color: #616161; }
+
+    </style>
+</head>
+
+<body data-background-color="bg3">
+    <div class="wrapper page-container">
+        <div class="main-header">
+            <div class="nav-top">
+                <div class="container d-flex flex-row">
+                    <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+                    <a class="logo d-flex align-items-center" href="../index.html"><img src="../assets/logo_all.png" alt="logo" class="navbar-brand"></a>
+                    <nav class="navbar navbar-header navbar-expand-lg p-0">
+                        <div class="container-fluid p-0">
+                            <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                                <li class="nav-item dropdown hidden-caret">
+                                    <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false" title="Entrenamientos">
+                                        <img src="../assets/menu_entrenamientos.png" style="width: 28px;">
+                                    </a>
+                                    <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
+                                        <div class="quick-actions-scroll scrollbar-outer">
+                                            <div class="quick-actions-items">
+                                                <div class="row m-0">
+                                                    <a class="col-6 col-md-4 p-0" href="../POSIBLES NO NECESARIOS/EJERCICIO/EJERCICIO INICIO.html">
+                                                        <div class="quick-actions-item">
+                                                            <img src="../assets/m_ejercicio.png" style="width: 40px;">
+                                                            <span class="text">Ejercicio</span>
+                                                        </div>
+                                                    </a>
+                                                    <a class="col-6 col-md-4 p-0" href="../POSIBLES NO NECESARIOS/Circuitos/INICIO CIRCUITO.html">
+                                                        <div class="quick-actions-item">
+                                                            <img src="../assets/m_circuito.png" style="width: 40px;">
+                                                            <span class="text">Circuito</span>
+                                                        </div>
+                                                    </a>
+                                                    <a class="col-6 col-md-4 p-0" href="../POSIBLES NO NECESARIOS/DRILLS/INICIO DRILLS.html">
+                                                        <div class="quick-actions-item">
+                                                            <img src="../assets/drills.svg" style="width: 32px;margin-top:4px;margin-bottom:4px">
+                                                            <span class="text">Drills</span>
+                                                        </div>
+                                                    </a>
+                                                    <a class="col-6 col-md-4 p-0" href="../MICRO/INICIO MICRO.html">
+                                                        <div class="quick-actions-item">
+                                                            <img src="../assets/m_micro.png" style="width: 40px;">
+                                                            <span class="text">Microciclo</span>
+                                                        </div>
+                                                    </a>
+                                                    <a class="col-6 col-md-4 p-0" href="../MESO/INICIO MESO.html">
+                                                        <div class="quick-actions-item">
+                                                            <img src="../assets/m_meso.png" style="width: 40px;">
+                                                            <span class="text">Mesociclo</span>
+                                                        </div>
+                                                    </a>
+                                                    <a class="col-6 col-md-4 p-0" href="../MACRO/INICIO MACRO.html">
+                                                        <div class="quick-actions-item">
+                                                            <img src="../assets/m_macro.png" style="width: 40px;">
+                                                            <span class="text">Macrociclo</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown hidden-caret">
+                                    <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false" title="Menu">
+                                        <img src="../assets/menu_menu.png" style="width: 28px;">
+                                    </a>
+                                    <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
+                                        <div class="quick-actions-scroll scrollbar-outer">
+                                            <div class="quick-actions-items">
+                                                <div class="row m-0">
+                                                    <a class="col-6 col-md-4 p-0" href="../index.html">
+                                                        <div class="quick-actions-item">
+                                                            <img src="../assets/m_inicio.png" style="width: 40px;">
+                                                            <span class="text">Inicio</span>
+                                                        </div>
+                                                    </a>
+                                                    <a class="col-6 col-md-4 p-0" href="Atletas INICIO.html">
+                                                        <div class="quick-actions-item">
+                                                            <img src="../assets/m_atletas.png" style="width: 40px;">
+                                                            <span class="text">Atletas</span>
+                                                        </div>
+                                                    </a>
+                                                    <a class="col-6 col-md-4 p-0" href="../INFORMES/Informes Inicio.html">
+                                                        <div class="quick-actions-item">
+                                                            <img src="../assets/d_informes.png" style="width: 40px;">
+                                                            <span class="text">Informes</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown hidden-caret">
+                                    <a class="dropdown-toggle profile-pic " data-toggle="dropdown" href="#" aria-expanded="false">
+                                        <div style="float: left; padding: 10px; color: #fff;">| YUC</div>
+                                        <div class="avatar-sm" style="float: left;">
+                                            <img src="../assets/user_242.png" alt="..." class="avatar-img rounded-circle imgshadow">
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                        <li>
+                                            <div class="user-box">
+                                                <div class="avatar-lg"><img src="../assets/user_242.png" alt="image profile" class="avatar-img rounded"></div>
+                                                <div class="u-text">
+                                                    <h4></h4>
+                                                    <p class="text-muted">AIYM YUC</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Patrocinios</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" onclick="logout(); return false;" style="color:#777; font-weight:400;">Salir</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-panel">
+            <div class="container" style="min-height: 550px;">
+                <div class="page-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="page-navs py-2">
+                                <div class="page-header">
+                                    <h5 class="page-title">Atletas</h5>
+                                    <ul class="breadcrumbs">
+                                        <li class="nav-home">
+                                            <i class="fas fa-users" style="font-size: 1rem;"></i> </li>
+                                        <li class="separator">
+                                            <i class="flaticon-right-arrow"></i>
+                                        </li>
+                                        <li class="nav-item">
+                                            Consulta
+                                        </li>
+                                    </ul>
+                                    <div class="ml-auto">
+                                        <div class="page-header-breadcrumb">
+                                            <a class="btn btn-primary btn-sm mr-2" href="Atletas AGREGAR.html"><i class="fas fa-plus mr-1" style="font-weight:700"></i> Agregar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <input type="text" id="searchInput" class="form-control" placeholder="🔍 Buscar atletas por nombre, email o teléfono...">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select id="filterDeporte" class="form-control">
+                                                <option value="">Todos los deportes</option>
+                                                <option value="Carrera">Carrera</option>
+                                                <option value="Bici">Bici</option>
+                                                <option value="Natación">Natación</option>
+                                                <option value="Triatlón">Triatlón</option>
+                                                <option value="Otro">Otro</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 text-right">
+                                            <span id="athleteCount" class="badge badge-info" style="font-size: 14px; padding: 8px 12px;">
+                                                Cargando...
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div id="athletesContainer" class="row">
+                                        <div class="col-12 text-center py-5">
+                                            <div class="spinner-border text-info" role="status">
+                                                <span class="sr-only">Cargando...</span>
+                                            </div>
+                                            <p class="mt-2">Cargando atletas...</p>
+                                        </div>
+                                    </div>
+                                    <div id="paginationContainer" class="row mt-4">
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="clear: both;"></div>
+        <div class="modern-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div>
+                        <img src="../assets/logo_all.png" alt="ALL IN YOUR MIND" class="footer-logo">
+                        <p style="margin-top: 15px; color: #add6e8; font-size: 14px;">
+                            Sistema integral de gestión<br>y entrenamiento deportivo
+                        </p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="../index.html">Inicio</a>
+                        <a href="Atletas INICIO.html">Atletas</a>
+                        <a href="../INFORMES/Informes Inicio.html">Informes</a>
+                        <a href="../POSIBLES NO NECESARIOS/EJERCICIO/EJERCICIO INICIO.html">Ejercicios</a>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <div class="footer-bottom">
+                    <p>Copyright © 2025 by <a href="http://allinyourmind.es/" target="_blank" style="color: #28a9e2; text-decoration: none; font-weight: 600;">ALL IN YOUR MIND</a></p>
+                    <p style="font-size: 12px; margin-top: 5px; opacity: 0.8;">Sistema de Entrenamiento Deportivo Profesional</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/jquery.min.js.descarga"></script>
+    <script src="../assets/popper.min.js.descarga"></script>
+    <script src="../assets/bootstrap.min.js.descarga"></script>
+    <script src="../assets/sweetalert.min.js.descarga"></script>
+    <script src="/logout.js"></script>
+
+    <script>
+        (function() {
+            let allAthletes = [];
+            let filteredAthletes = [];
+            let currentPage = 1;
+            const itemsPerPage = 50;
+            let loadCounter = 0;
+            let renderCounter = 0;
+
+            async function loadAthletes() {
+                loadCounter++;
+                console.log('🔄 loadAthletes llamado (vez #' + loadCounter + ')');
+                try {
+                    const response = await fetch('/api/athletes');
+                    if (!response.ok) { throw new Error('Error al cargar atletas'); }
+                    allAthletes = await response.json();
+                    filteredAthletes = allAthletes;
+                    currentPage = 1;
+                    displayAthletes();
+                    updateCount();
+                    displayPagination();
+                } catch (error) {
+                    console.error('Error:', error);
+                    document.getElementById('athletesContainer').innerHTML = `<div class="col-12 text-center py-5"><i class="fas fa-exclamation-triangle text-danger fa-3x"></i><p class="mt-3">Error al cargar los atletas</p><button class="btn btn-info" onclick="location.reload()">Reintentar</button></div>`;
+                }
+            }
+
+            function displayAthletes() {
+                renderCounter++;
+                console.log('🎨 displayAthletes llamado (vez #' + renderCounter + ')');
+                
+                const container = document.getElementById('athletesContainer');
+                if (filteredAthletes.length === 0) {
+                    container.innerHTML = `<div class="col-12 text-center py-5"><i class="fas fa-users text-muted fa-3x"></i><p class="mt-3">No se encontraron atletas</p><a href="Atletas AGREGAR.html" class="btn btn-primary mt-2"><i class="fas fa-plus mr-1"></i> Agregar Primer Atleta</a></div>`;
+                    return;
+                }
+
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                const paginatedAthletes = filteredAthletes.slice(startIndex, endIndex);
+
+                let html = `
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="80">Foto</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Email</th>
+                                        <th>Teléfono</th>
+                                        <th>Deporte</th>
+                                        <th>Edad</th>
+                                        <th width="200" class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`;
+
+                paginatedAthletes.forEach(athlete => {
+                    const photoUrl = athlete.foto_url;
+                    const deporte = athlete.deporte_principal || 'Otro';
+                    const email = athlete.email || 'N/A';
+                    const telefono = athlete.telefono || 'N/A';
+                    const edad = athlete.fecha_nacimiento ? calcularEdad(athlete.fecha_nacimiento) : 'N/A';
+
+                    // Generar HTML de foto - SIEMPRE con fallback al ícono
+                    let fotoHtml = '';
+                    if (photoUrl && photoUrl.trim() !== '') {
+                        // Tiene foto - intentar cargar con fallback al ícono
+                        fotoHtml = `<img src="${photoUrl}" alt="${athlete.nombre}" class="rounded-circle" width="50" height="50" style="object-fit: cover; border: 2px solid #add6e8;" onerror="this.parentElement.innerHTML='<div class=\\'rounded-circle d-flex align-items-center justify-content-center\\' style=\\'width: 50px; height: 50px; background-color: #0e4165; border: 2px solid #add6e8;\\'><i class=\\'fas fa-user\\' style=\\'color: white; font-size: 24px;\\'></i></div>';">`;
+                    } else {
+                        // No tiene foto - mostrar ícono directamente
+                        fotoHtml = `<div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: #0e4165; border: 2px solid #add6e8;"><i class="fas fa-user" style="color: white; font-size: 24px;"></i></div>`;
+                    }
+
+                    html += `
+                        <tr>
+                            <td>${fotoHtml}</td>
+                            <td><strong>${athlete.nombre} ${athlete.apellido}</strong></td>
+                            <td><i class="fas fa-envelope text-muted mr-1"></i>${email}</td>
+                            <td><i class="fas fa-phone text-muted mr-1"></i>${telefono}</td>
+                            <td><span class="badge athlete-sport-badge athlete-sport-${deporte}">${deporte}</span></td>
+                            <td><i class="fas fa-birthday-cake text-muted mr-1"></i>${edad}${edad !== 'N/A' ? ' años' : ''}</td>
+                            <td class="text-center actions-cell"> <button class="btn btn-sm btn-action btn-action-dashboard" onclick="openDashboard(${athlete.id})" title="Dashboard">
+                                    <i class="fas fa-chart-line"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-action-lactato" onclick="addLactato(${athlete.id})" title="Informe Lactato">
+                                    <i class="fas fa-vial"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-action-ergo" onclick="addErgo(${athlete.id})" title="Informe Ergoespirométrico">
+                                    <i class="fas fa-lungs"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-action-edit" onclick="editAthlete(${athlete.id})" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-action btn-action-delete" onclick="deleteAthlete(${athlete.id}, '${athlete.nombre} ${athlete.apellido}')" title="Eliminar">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>`;
+                });
+
+                html += `</tbody></table></div></div>`;
+                container.innerHTML = html;
+            }
+
+            function displayPagination() {
+                 const totalPages = Math.ceil(filteredAthletes.length / itemsPerPage);
+                 const paginationContainer = document.getElementById('paginationContainer');
+                 if (totalPages <= 1) { paginationContainer.innerHTML = ''; return; }
+
+                 let html = `<nav aria-label="Paginación de atletas" class="col-12"><ul class="pagination justify-content-center">`;
+                 html += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}"><a class="page-link" href="javascript:void(0)" onclick="changePage(${currentPage - 1})"><i class="fas fa-chevron-left"></i> Ant</a></li>`;
+
+                 const maxPagesToShow = 5;
+                 let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+                 let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+                 if (endPage - startPage < maxPagesToShow - 1) { startPage = Math.max(1, endPage - maxPagesToShow + 1); }
+
+                 if (startPage > 1) {
+                     html += `<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="changePage(1)">1</a></li>`;
+                     if (startPage > 2) { html += `<li class="page-item disabled"><span class="page-link">...</span></li>`; }
+                 }
+                 for (let i = startPage; i <= endPage; i++) {
+                     html += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="javascript:void(0)" onclick="changePage(${i})">${i}</a></li>`;
+                 }
+                 if (endPage < totalPages) {
+                     if (endPage < totalPages - 1) { html += `<li class="page-item disabled"><span class="page-link">...</span></li>`; }
+                     html += `<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="changePage(${totalPages})">${totalPages}</a></li>`;
+                 }
+
+                 html += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}"><a class="page-link" href="javascript:void(0)" onclick="changePage(${currentPage + 1})">Sig <i class="fas fa-chevron-right"></i></a></li>`;
+                 html += `</ul></nav><div class="col-12 text-center text-muted small mt-2">Mostrando ${(currentPage - 1) * itemsPerPage + 1} - ${Math.min(currentPage * itemsPerPage, filteredAthletes.length)} de ${filteredAthletes.length} atletas</div>`;
+                 paginationContainer.innerHTML = html;
+            }
+
+
+            window.changePage = function(page) {
+                const totalPages = Math.ceil(filteredAthletes.length / itemsPerPage);
+                if (page < 1 || page > totalPages || page === currentPage) return;
+                currentPage = page;
+                displayAthletes();
+                displayPagination();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            function calcularEdad(fechaNacimiento) {
+                 if (!fechaNacimiento) return 'N/A';
+                 try {
+                     const hoy = new Date();
+                     const nacimiento = new Date(fechaNacimiento);
+                     let edad = hoy.getFullYear() - nacimiento.getFullYear();
+                     const mes = hoy.getMonth() - nacimiento.getMonth();
+                     if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+                         edad--;
+                     }
+                     return isNaN(edad) ? 'N/A' : edad;
+                 } catch (e) {
+                     return 'N/A';
+                 }
+            }
+
+            function updateCount() {
+                 document.getElementById('athleteCount').textContent = `${filteredAthletes.length} atleta${filteredAthletes.length !== 1 ? 's' : ''}`;
+            }
+
+            // Debounce function para evitar llamadas excesivas
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            function filterAthletes() {
+                 console.log('🔍 Filtrando atletas...');
+                 const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+                 const deporteFilter = document.getElementById('filterDeporte').value;
+                 filteredAthletes = allAthletes.filter(athlete => {
+                     const nameMatch = `${athlete.nombre} ${athlete.apellido}`.toLowerCase().includes(searchTerm);
+                     const emailMatch = athlete.email && athlete.email.toLowerCase().includes(searchTerm);
+                     const phoneMatch = athlete.telefono && athlete.telefono.includes(searchTerm);
+                     const sportMatch = !deporteFilter || athlete.deporte_principal === deporteFilter;
+                     return (nameMatch || emailMatch || phoneMatch) && sportMatch;
+                 });
+                 currentPage = 1;
+                 displayAthletes();
+                 updateCount();
+                 displayPagination();
+            }
+
+            // Aplicar debounce al buscador (300ms) y cambio inmediato al filtro de deporte
+            const debouncedFilter = debounce(filterAthletes, 300);
+            document.getElementById('searchInput').addEventListener('input', debouncedFilter);
+            document.getElementById('filterDeporte').addEventListener('change', filterAthletes);
+
+            window.openDashboard = function(id) { window.location.href = `DASHBORD/Atletas DASHBOARD.html?id=${id}`; };
+            window.editAthlete = function(id) { window.location.href = `EDITAR/Atletas Editar.html?id=${id}`; };
+            window.addLactato = function(id) { window.location.href = `../INFORMES/REPORTES/LACTATO/AGREGAR LACTATO.html?atleta_id=${id}`; };
+            window.addErgo = function(id) { window.location.href = `../INFORMES/REPORTES/ERGO/AGREGAR ERGO.html?atleta_id=${id}`; };
+            window.deleteAthlete = function(id, name) {
+                 swal({
+                     title: "¿Estás seguro?", text: `¿Deseas eliminar a ${name}?`, icon: "warning",
+                     buttons: ["Cancelar", "Eliminar"], dangerMode: true,
+                 }).then(async (willDelete) => {
+                     if (willDelete) {
+                         try {
+                             const response = await fetch(`/api/athletes/${id}`, { method: 'DELETE' });
+                             const data = await response.json();
+                             if (data.success) {
+                                 swal("¡Eliminado!", "El atleta ha sido eliminado.", "success");
+                                 loadAthletes(); // Recargar la lista
+                             } else { swal("Error", data.error || "Error al eliminar.", "error"); }
+                         } catch (error) { swal("Error", "Error de conexión.", "error"); }
+                     }
+                 });
+            };
+
+            // Evitar cargas múltiples
+            if (!window.athletesLoaded) {
+                window.athletesLoaded = true;
+                loadAthletes();
+            }
+        })();
+    </script>
+</body>
+
+</html>
